@@ -1,12 +1,14 @@
 import React from 'react';
+import Auxiliary from "../../hoc/Auxiliary";
+
 
 const layout = ( props ) => (
-  <aux>
+  <Auxiliary>
     <div>Toolbar etc</div>
     <main>
       {props.children}
     </main>
-  </aux>
+  </Auxiliary>
 );
 
 export default layout;
