@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Auxiliary from "../../hoc/Auxiliary";
+import PersonList from "../../components/PersonList/PersonList";
 
 class NamesContainer extends Component {
   render() {
     return (
       <Auxiliary>
-        <div>
-          List of names
-        </div>
+        <PersonList />
         <div>
           Total amount of all the names
         </div>
