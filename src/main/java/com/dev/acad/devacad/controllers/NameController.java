@@ -20,12 +20,12 @@ public class NameController implements CommandLineRunner {
         nameService = theNamesController;
     }
 
-    @RequestMapping("/names/getAll")
+    @RequestMapping("api/names/getAll")
     public Iterable<Name> getAll(){
         return nameService.list();
     }
 
-    @RequestMapping("/test/names")
+    @RequestMapping("api/test/names")
     public void testNames(){
         nameService.save(new Name("Ville", 24));
         nameService.save(new Name("Anna", 6));

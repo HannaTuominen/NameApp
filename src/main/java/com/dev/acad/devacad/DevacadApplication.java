@@ -14,7 +14,7 @@ public class DevacadApplication {
 		SpringApplication.run(DevacadApplication.class, args);
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("api/")
 	public String renderWelcomePage(Model model) {
 		return "<h1>Hello this is the backend.</h1>";
 	}
