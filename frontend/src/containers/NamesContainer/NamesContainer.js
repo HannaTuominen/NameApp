@@ -10,7 +10,7 @@ class NamesContainer extends Component {
   };
 
   async componentDidMount() {
-    await axios.get( process.env.REACT_APP_BACK_URL + '/api/names/getAll')
+    await axios.get( '/api/names/getAll')
       .then( response => {
         console.log(response);
         this.setState( {
