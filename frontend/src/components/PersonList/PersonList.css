@@ -1,4 +1,4 @@
-.Person {
+.PersonList {
     width: 100%;
     padding: 5px;
     text-align: center;
@@ -6,17 +6,4 @@
     box-shadow: 0 1px 1px #ccc;
     margin: 2px;
     box-sizing: border-box;
-    display: flex;
-}
-
-.Name {
-    flex: 1;
-    margin: 16px 0;
-    color: #000;
-}
-
-.Amount {
-    margin: 16px 0;
-    color: #000;
-    flex: 1;
 }
