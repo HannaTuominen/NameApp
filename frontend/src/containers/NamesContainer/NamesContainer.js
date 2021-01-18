@@ -2,24 +2,33 @@ import React, { Component } from 'react';
 import PersonList from "../../components/PersonList/PersonList";
 import axios from "axios";
 import classes from './NamesContainer.css';
+import LoadingIndicator from "../../components/UI/LoadingIndicator/LoadingIndicator";
+import Auxiliary from "../../hoc/Auxiliary";
 
 
 class NamesContainer extends Component {
   state = {
     persons: [],
     totalAmountOfPersons: null,
-    filteredPersons: []
+    filteredPersons: [],
+    isLoading: false,
+    error: {}
   };
 
   async componentDidMount() {
+    this.setState({isLoading: true});
     await axios.get( '/api/names/getAll')
       .then( response => {
         this.setState( {
           persons: response.data,
           filteredPersons: response.data,
-          totalAmountOfPersons: this.countAllPersons(response.data)
+          totalAmountOfPersons: this.countAllPersons(response.data),
+          isLoading: false
         } );
-      } );
+      } )
+      .catch((error) => {
+        this.setState({isLoading: false, error: error.message});
+      });
   }
 
   sortPersonsList = (type) => {
@@ -46,7 +55,7 @@ class NamesContainer extends Component {
 
   };
 
-   countAllPersons = (persons) => {
+  countAllPersons = (persons) => {
     let personsArray = [...persons];
     let amount = 0;
 
@@ -84,11 +93,17 @@ class NamesContainer extends Component {
           </div>
           <div className={classes.notInputDivs}></div>
         </div>
-        {this.state.filteredPersons.length < 1 ?  <div className={classes.missing}><p>Name not found...</p></div> : <div className={classes.notMissing}></div>}
-        <PersonList
-          persons={this.state.filteredPersons}
-          sortPersonsList={this.sortPersonsList}
-          handleSearchChange={this.handleSearchChange}/>
+        {this.state.isLoading ?
+          <div><LoadingIndicator height={"50px"}/></div>:
+          <Auxiliary>
+            {this.state.filteredPersons.length < 1 ? <div className={classes.missing}><p>Name not found...</p></div> :
+              <div className={classes.notMissing}></div>}
+            <PersonList
+              persons={this.state.filteredPersons}
+              sortPersonsList={this.sortPersonsList}
+              handleSearchChange={this.handleSearchChange}/>
+          </Auxiliary>
+       }
       </div>
     );
   }
