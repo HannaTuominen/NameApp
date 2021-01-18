@@ -81,7 +81,7 @@ class NamesContainer extends Component {
           <h1>The most popular names</h1>
         </div>
         <div>
-          The total amount of names currently in this list is: {this.state.totalAmountOfPersons}
+          <p>The total amount of names currently in this list is: {this.state.totalAmountOfPersons}</p>
         </div>
         <SearchBar handleSearchChange={this.handleSearchChange} filteredPersonsLength={this.state.filteredPersons.length}/>
         {this.state.isLoading ?
