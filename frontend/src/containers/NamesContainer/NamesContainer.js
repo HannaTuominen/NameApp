@@ -4,6 +4,7 @@ import axios from "axios";
 import classes from './NamesContainer.css';
 import LoadingIndicator from "../../components/UI/LoadingIndicator/LoadingIndicator";
 import Auxiliary from "../../hoc/Auxiliary";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 
 class NamesContainer extends Component {
@@ -82,22 +83,10 @@ class NamesContainer extends Component {
         <div>
           The total amount of names currently in this list is: {this.state.totalAmountOfPersons}
         </div>
-        <div className={classes.inputContainer}>
-          <div className={classes.notInputDivs}></div>
-          <div className={classes.inputDiv}>
-            <input
-              type="text"
-              placeholder="Search for a name..."
-              onChange={this.handleSearchChange}
-              className={classes.input}/>
-          </div>
-          <div className={classes.notInputDivs}></div>
-        </div>
+        <SearchBar handleSearchChange={this.handleSearchChange} filteredPersonsLength={this.state.filteredPersons.length}/>
         {this.state.isLoading ?
           <div><LoadingIndicator height={"50px"}/></div>:
           <Auxiliary>
-            {this.state.filteredPersons.length < 1 ? <div className={classes.missing}><p>Name not found...</p></div> :
-              <div className={classes.notMissing}></div>}
             <PersonList
               persons={this.state.filteredPersons}
               sortPersonsList={this.sortPersonsList}

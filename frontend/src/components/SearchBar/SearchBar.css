@@ -1,0 +1,32 @@
+.inputContainer {
+    display: flex;
+    padding-top: 10px;
+}
+
+.inputDiv {
+    flex: 5;
+}
+
+.input {
+    height: 30px;
+    width: 100%;
+    outline-color: #eee;
+}
+
+.notInputDivs {
+    flex: 1;
+}
+
+.missing {
+    flex: 1;
+}
+
+.notMissing {
+    flex: 1;
+    margin-bottom: 25px;
+}
+
+.missing p {
+    margin: 5px;
+    color: red;
+}
