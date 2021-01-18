@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Person from "./Person/Person";
 import classes from "./PersonList.css";
-import SortOptions from "../SortOptions/SortOptions";
+import SortOption from "../SortOption/SortOption";
 
 class PersonList extends Component {
 
@@ -16,12 +16,25 @@ class PersonList extends Component {
 
     return (
       <div className={classes.PersonList}>
-        <div>
-          <SortOptions sortPersonsList={this.props.sortPersonsList}/>
-        </div>
-        <div>
+        <table style={{width: '100%', border: '1px solid #eee'}}>
+          <thead style={{border: '1px solid #eee'}}>
+          <tr style={{border: '1px solid #eee'}}>
+            <th>
+              <SortOption sortPersonsList={this.props.sortPersonsList} sortOption={"name-asc"}>↑</SortOption>
+              <div>Name</div>
+              <SortOption sortPersonsList={this.props.sortPersonsList} sortOption={"name-desc"}>↓</SortOption>
+            </th>
+            <th>
+              <SortOption sortPersonsList={this.props.sortPersonsList} sortOption={"amount-asc"}>↑</SortOption>
+              <div>Amount</div>
+              <SortOption sortPersonsList={this.props.sortPersonsList} sortOption={"amount-desc"}>↓</SortOption>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
           {persons}
-        </div>
+          </tbody>
+        </table>
       </div>
     );
   }

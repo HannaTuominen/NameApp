@@ -6,7 +6,8 @@ import axios from "axios";
 class NamesContainer extends Component {
   state = {
     persons: [],
-    totalAmountOfPersons: null
+    totalAmountOfPersons: null,
+    filteredPersons: []
   };
 
   async componentDidMount() {
@@ -15,13 +16,14 @@ class NamesContainer extends Component {
         console.log(response);
         this.setState( {
           persons: response.data,
+          filteredPersons: response.data,
           totalAmountOfPersons: this.countAllPersons(response.data)
         } );
       } );
   }
 
   sortPersonsList = (type) => {
-    let newPersonsArray = [...this.state.persons];
+    let newPersonsArray = [...this.state.filteredPersons];
 
     console.log(type);
     switch(type) {
@@ -40,10 +42,10 @@ class NamesContainer extends Component {
       default:
         throw new Error('Unknown sorting type.');
     }
-    console.log(this.state.persons);
     console.log(newPersonsArray);
 
-    this.setState({persons: newPersonsArray});
+    this.setState({persons: newPersonsArray, filteredPersons: newPersonsArray});
+
   };
 
    countAllPersons = (persons) => {
@@ -56,17 +58,35 @@ class NamesContainer extends Component {
     return amount;
   };
 
+  handleSearchChange = (event) => {
+    const search = event.target.value;
+    const results = this.state.persons.filter(person =>
+      person.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    console.log(results);
+    this.setState({filteredPersons: results});
+  };
+
   render() {
     return (
       <Auxiliary>
         <div>
-          <PersonList persons={this.state.persons} sortPersonsList={this.sortPersonsList}/>
-        </div>
-        <div>
-          {this.state.totalAmountOfPersons}
-        </div>
-        <div>
-          amount of the names given as a parameter
+            <div>
+              Total amount of people at this moment: {this.state.totalAmountOfPersons}
+            </div>
+          <div style={{width: "100%", textAlign:"center"}}>
+            <input
+              type="text"
+              placeholder="Search for a name..."
+              onChange={this.handleSearchChange}
+            />
+          </div>
+          <PersonList
+            persons={this.state.filteredPersons}
+            sortPersonsList={this.sortPersonsList}
+            handleSearchChange={this.handleSearchChange}
+            searchTerm={this.state.searchTerm}/>
         </div>
       </Auxiliary>
     );

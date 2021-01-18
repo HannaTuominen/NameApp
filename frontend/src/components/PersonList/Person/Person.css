@@ -1,22 +1,8 @@
 .Person {
     width: 100%;
-    padding: 5px;
-    text-align: center;
+    height: 50px;
+    /*padding: 8px;*/
+    /*text-align: center;*/
     border: 1px solid #eee;
-    box-shadow: 0 1px 1px #ccc;
-    margin: 2px;
-    box-sizing: border-box;
-    display: flex;
-}
-
-.Name {
-    flex: 1;
-    margin: 16px 0;
-    color: #000;
-}
-
-.Amount {
-    margin: 16px 0;
-    color: #000;
-    flex: 1;
+    /*box-shadow: 0 1px 1px #ccc;*/
 }
