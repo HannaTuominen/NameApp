@@ -81,6 +81,7 @@ class NamesContainer extends Component {
               placeholder="Search for a name..."
               onChange={this.handleSearchChange}
             />
+            {this.state.filteredPersons.length < 1 ?  <div>Name not found...</div>: null}
           </div>
           <PersonList
             persons={this.state.filteredPersons}
