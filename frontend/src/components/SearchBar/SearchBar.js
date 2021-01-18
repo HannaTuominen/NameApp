@@ -5,22 +5,22 @@ import Auxiliary from "../../hoc/Auxiliary";
 
 const SearchBar = props => (
   <Auxiliary>
-  <div className={classes.inputContainer}>
-    <div className={classes.notInputDivs}></div>
-      <div className={classes.inputDiv}>
+  <div className={classes.InputContainer}>
+    <div className={classes.NotInputDivs}></div>
+      <div className={classes.InputDiv}>
       <input
         type="text"
         placeholder="Search for a name..."
         onChange={props.handleSearchChange}
-        className={classes.input}
+        className={classes.Input}
       />
     </div>
-    <div className={classes.notInputDivs}></div>
+    <div className={classes.NotInputDivs}></div>
   </div>
-  { props.filteredPersonsLength < 1 ?
-    <div className={classes.missing}>
+  {props.displayNameNotFound && !props.loading ?
+    <div className={classes.Missing}>
       <p>Name not found...</p>
-    </div> : <div className={classes.notMissing}></div> }
+    </div> : <div className={classes.NotMissing}></div> }
   </Auxiliary>
 );
 

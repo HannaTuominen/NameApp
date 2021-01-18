@@ -14,7 +14,7 @@ const PersonList = (props) => {
 
   return (
     <div>
-      <table className={classes.styledTable}>
+      <table className={classes.StyledTable}>
         <thead>
         <tr>
           <th>

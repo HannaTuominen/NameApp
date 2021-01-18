@@ -1,11 +1,11 @@
-.sortContainer {
+.SortContainer {
     display: flex;
 }
 
-.name {
+.Name {
     padding-right: 5px;
 }
 
-.arrow {
+.Arrow {
     padding-right: 5px;
 }

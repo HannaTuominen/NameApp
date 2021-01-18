@@ -1,32 +1,32 @@
-.inputContainer {
+.InputContainer {
     display: flex;
     padding-top: 10px;
 }
 
-.inputDiv {
+.InputDiv {
     flex: 5;
 }
 
-.input {
+.Input {
     height: 30px;
     width: 100%;
     outline-color: #eee;
 }
 
-.notInputDivs {
+.NotInputDivs {
     flex: 1;
 }
 
-.missing {
+.Missing {
     flex: 1;
 }
 
-.notMissing {
+.NotMissing {
     flex: 1;
     margin-bottom: 25px;
 }
 
-.missing p {
+.Missing p {
     margin: 5px;
     color: red;
 }

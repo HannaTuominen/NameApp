@@ -5,6 +5,7 @@ import classes from './NamesContainer.css';
 import LoadingIndicator from "../../components/UI/LoadingIndicator/LoadingIndicator";
 import Auxiliary from "../../hoc/Auxiliary";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import ErrorModal from "../../components/UI/ErrorModal/ErrorModal";
 
 
 class NamesContainer extends Component {
@@ -13,12 +14,13 @@ class NamesContainer extends Component {
     totalAmountOfPersons: null,
     filteredPersons: [],
     isLoading: false,
-    error: {}
+    error: null,
+    displayNameNotFound: false
   };
 
   async componentDidMount() {
     this.setState({isLoading: true});
-    await axios.get( '/api/names/getAll')
+    await axios.get( '/api/names/getAlls')
       .then( response => {
         this.setState( {
           persons: response.data,
@@ -71,29 +73,47 @@ class NamesContainer extends Component {
     const results = this.state.persons.filter(person =>
       person.name.toLowerCase().includes(search.toLowerCase())
     );
-    this.setState({filteredPersons: results});
+    if(results.length > 0 ) {
+      this.setState({filteredPersons: results, displayNameNotFound: false});
+    }else {
+      this.setState({filteredPersons: results, displayNameNotFound: true});
+    }
+  };
+
+  clearError = () => {
+    this.setState({loading: false, error: null});
   };
 
   render() {
     return (
-      <div className={classes.Container}>
-        <div>
-          <h1>The most popular names</h1>
+      <Auxiliary>
+        {this.state.error &&
+          <ErrorModal
+            show={this.state.error}
+            closeModal={this.clearError}>
+            {this.state.error}
+          </ErrorModal>}
+        <div className={classes.Container}>
+          <div>
+            <h1>The most popular names</h1>
+          </div>
+          <div>
+            <p>The total amount of names currently in this list is: {this.state.totalAmountOfPersons}</p>
+          </div>
+          <SearchBar handleSearchChange={this.handleSearchChange}
+            displayNameNotFound={this.state.displayNameNotFound}
+            loading={this.state.isLoading}/>
+          {this.state.isLoading ?
+            <div><LoadingIndicator height={"50px"}/></div>:
+            <Auxiliary>
+              <PersonList
+                persons={this.state.filteredPersons}
+                sortPersonsList={this.sortPersonsList}
+                handleSearchChange={this.handleSearchChange}/>
+            </Auxiliary>
+         }
         </div>
-        <div>
-          <p>The total amount of names currently in this list is: {this.state.totalAmountOfPersons}</p>
-        </div>
-        <SearchBar handleSearchChange={this.handleSearchChange} filteredPersonsLength={this.state.filteredPersons.length}/>
-        {this.state.isLoading ?
-          <div><LoadingIndicator height={"50px"}/></div>:
-          <Auxiliary>
-            <PersonList
-              persons={this.state.filteredPersons}
-              sortPersonsList={this.sortPersonsList}
-              handleSearchChange={this.handleSearchChange}/>
-          </Auxiliary>
-       }
-      </div>
+      </Auxiliary>
     );
   }
 }
