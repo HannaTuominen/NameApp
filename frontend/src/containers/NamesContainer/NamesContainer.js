@@ -20,7 +20,7 @@ class NamesContainer extends Component {
 
   async componentDidMount() {
     this.setState({isLoading: true});
-    await axios.get( '/api/names/getAlls')
+    await axios.get( '/api/names/getAll')
       .then( response => {
         this.setState( {
           persons: response.data,
