@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Auxiliary from "../../hoc/Auxiliary";
 import PersonList from "../../components/PersonList/PersonList";
 import axios from "axios";
 import classes from './NamesContainer.css';
@@ -15,7 +14,6 @@ class NamesContainer extends Component {
   async componentDidMount() {
     await axios.get( '/api/names/getAll')
       .then( response => {
-        console.log(response);
         this.setState( {
           persons: response.data,
           filteredPersons: response.data,
@@ -65,8 +63,6 @@ class NamesContainer extends Component {
     const results = this.state.persons.filter(person =>
       person.name.toLowerCase().includes(search.toLowerCase())
     );
-
-    console.log(results);
     this.setState({filteredPersons: results});
   };
 
@@ -77,7 +73,7 @@ class NamesContainer extends Component {
           <h1>The most popular names</h1>
         </div>
         <div>
-          There are currently {this.state.totalAmountOfPersons} people in this list
+          The total amount of names currently in this list is: {this.state.totalAmountOfPersons}
         </div>
         <div className={classes.inputContainer}>
           <div className={classes.notInputDivs}></div>
