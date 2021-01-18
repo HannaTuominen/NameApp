@@ -1,11 +1,13 @@
 .Container {
-    width: 100%;
     text-align: center;
+    margin: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 1px #ccc;
 }
 
 .inputContainer {
-    padding: 8px;
     display: flex;
+    padding-top: 10px;
 }
 
 .inputDiv {
@@ -15,16 +17,23 @@
 .input {
     height: 30px;
     width: 100%;
-}
-
-p {
-     padding: 0;
-     margin: 0;
+    outline-color: #eee;
 }
 
 .notInputDivs {
     flex: 1;
-    padding-left: 5px;
-    padding-top: 10px;
-    box-sizing: border-box;
+}
+
+.missing {
+    flex: 1;
+}
+
+.notMissing {
+    flex: 1;
+    margin-bottom: 25px;
+}
+
+.missing p {
+    margin: 5px;
+    color: red;
 }

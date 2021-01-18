@@ -13,10 +13,10 @@ const PersonList = (props) => {
   });
 
   return (
-    <div className={classes.PersonList}>
-      <table style={{width: '100%', border: '1px solid #eee'}}>
-        <thead style={{border: '1px solid #eee'}}>
-        <tr style={{boxShadow:"0 1px 1px #ccc"}}>
+    <div>
+      <table className={classes.styledTable}>
+        <thead>
+        <tr>
           <th>
             <SortOptions sortPersonsList={props.sortPersonsList} sortOption={"Name"}/>
           </th>

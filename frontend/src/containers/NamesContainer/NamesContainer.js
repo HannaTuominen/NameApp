@@ -77,7 +77,7 @@ class NamesContainer extends Component {
           <h1>The most popular names</h1>
         </div>
         <div>
-          Currently there are {this.state.totalAmountOfPersons} people in this list
+          There are currently {this.state.totalAmountOfPersons} people in this list
         </div>
         <div className={classes.inputContainer}>
           <div className={classes.notInputDivs}></div>
@@ -88,8 +88,9 @@ class NamesContainer extends Component {
               onChange={this.handleSearchChange}
               className={classes.input}/>
           </div>
-          {this.state.filteredPersons.length < 1 ?  <div className={classes.notInputDivs}><p>Name not found...</p></div> : <div className={classes.notInputDivs}></div>}
+          <div className={classes.notInputDivs}></div>
         </div>
+        {this.state.filteredPersons.length < 1 ?  <div className={classes.missing}><p>Name not found...</p></div> : <div className={classes.notMissing}></div>}
         <PersonList
           persons={this.state.filteredPersons}
           sortPersonsList={this.sortPersonsList}

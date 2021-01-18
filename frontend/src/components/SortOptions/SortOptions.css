@@ -1,0 +1,11 @@
+.sortContainer {
+    display: flex;
+}
+
+.name {
+    padding-right: 5px;
+}
+
+.arrow {
+    padding-right: 5px;
+}
