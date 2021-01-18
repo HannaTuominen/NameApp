@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Auxiliary from "../../hoc/Auxiliary";
 import PersonList from "../../components/PersonList/PersonList";
 import axios from "axios";
+import classes from './NamesContainer.css';
+
 
 class NamesContainer extends Component {
   state = {
@@ -70,26 +72,30 @@ class NamesContainer extends Component {
 
   render() {
     return (
-      <Auxiliary>
+      <div className={classes.Container}>
         <div>
-            <div>
-              Total amount of people at this moment: {this.state.totalAmountOfPersons}
-            </div>
-          <div style={{width: "100%", textAlign:"center"}}>
+          <h1>The most popular names</h1>
+        </div>
+        <div>
+          Currently there are {this.state.totalAmountOfPersons} people in this list
+        </div>
+        <div className={classes.inputContainer}>
+          <div className={classes.notInputDivs}></div>
+          <div className={classes.inputDiv}>
             <input
               type="text"
               placeholder="Search for a name..."
               onChange={this.handleSearchChange}
-            />
-            {this.state.filteredPersons.length < 1 ?  <div>Name not found...</div>: null}
+              className={classes.input}/>
           </div>
-          <PersonList
-            persons={this.state.filteredPersons}
-            sortPersonsList={this.sortPersonsList}
-            handleSearchChange={this.handleSearchChange}
-            searchTerm={this.state.searchTerm}/>
+          {this.state.filteredPersons.length < 1 ?  <div className={classes.notInputDivs}><p>Name not found...</p></div> : <div className={classes.notInputDivs}></div>}
         </div>
-      </Auxiliary>
+        <PersonList
+          persons={this.state.filteredPersons}
+          sortPersonsList={this.sortPersonsList}
+          handleSearchChange={this.handleSearchChange}
+          searchTerm={this.state.searchTerm}/>
+      </div>
     );
   }
 }

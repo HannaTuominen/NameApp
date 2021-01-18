@@ -1,0 +1,30 @@
+.Container {
+    width: 100%;
+    text-align: center;
+}
+
+.inputContainer {
+    padding: 8px;
+    display: flex;
+}
+
+.inputDiv {
+    flex: 5;
+}
+
+.input {
+    height: 30px;
+    width: 100%;
+}
+
+p {
+     padding: 0;
+     margin: 0;
+}
+
+.notInputDivs {
+    flex: 1;
+    padding-left: 5px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
