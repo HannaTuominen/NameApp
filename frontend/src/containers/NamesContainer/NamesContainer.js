@@ -25,7 +25,6 @@ class NamesContainer extends Component {
   sortPersonsList = (type) => {
     let newPersonsArray = [...this.state.filteredPersons];
 
-    console.log(type);
     switch(type) {
       case "name-asc":
         newPersonsArray.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
@@ -42,7 +41,6 @@ class NamesContainer extends Component {
       default:
         throw new Error('Unknown sorting type.');
     }
-    console.log(newPersonsArray);
 
     this.setState({persons: newPersonsArray, filteredPersons: newPersonsArray});
 
@@ -90,8 +88,7 @@ class NamesContainer extends Component {
         <PersonList
           persons={this.state.filteredPersons}
           sortPersonsList={this.sortPersonsList}
-          handleSearchChange={this.handleSearchChange}
-          searchTerm={this.state.searchTerm}/>
+          handleSearchChange={this.handleSearchChange}/>
       </div>
     );
   }
