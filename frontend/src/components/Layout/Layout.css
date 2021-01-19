@@ -1,3 +1,14 @@
 .Content {
     margin-top: 56px;
+    text-align: center;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
