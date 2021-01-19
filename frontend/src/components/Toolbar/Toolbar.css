@@ -13,3 +13,7 @@
     z-index: 90;
     color: white;
 }
+
+.HomeLogo {
+    cursor: pointer;
+}
